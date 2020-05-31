@@ -15,10 +15,25 @@ connect.then((db) =>{
     })
     .then((dish) =>{
         console.log(dish);
-        return dishes.find({}).exec();
+        return dishes.findByIdAndUpdate(dish._id, {
+            $set: {description: 'updated test'},
+        },{
+            new:true
+        }).exec();
     })
-    .then((dishes) =>{
-        console.log(dishes);
+    .then((dish) =>{
+        console.log(dish);
+
+        dish.comment.push({
+            rating:5,
+            comment:'i m getting feeling nervous',
+            author:'jaiswal'
+        });
+
+        return dish.save();
+    })
+    .then((dish) =>{
+        console.log(dish);
 
         return dishes.remove({});
     })

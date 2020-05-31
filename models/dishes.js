@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
 rating:{
-    type:No,
+    type:Number,
     min:1,
     max:5,
     required: true,
